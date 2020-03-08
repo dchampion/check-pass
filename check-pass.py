@@ -8,14 +8,12 @@ def main():
         usage()
     else:
         hashed = hashlib.sha1(sys.argv[1].encode('utf-8')).hexdigest().upper()
-        prefix = hashed[0:5]
-        results = lookup(prefix)
+        results = lookup(hashed[0:5])
         if len(results) > 1:
             seen = False
             for result in results:
-                suffix = result.split(':')[0]
-                frequency = result.split(':')[1]
-                if (hashed == (prefix + suffix)) and (frequency != '0'):
+                suffix, frequency = result.split(':')[0], result.split(':')[1]
+                if hashed[5:] == suffix and frequency != '0':
                     seen = True
                     break
             
