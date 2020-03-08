@@ -9,11 +9,13 @@ def main():
     else:
         hashed = hashlib.sha1(sys.argv[1].encode('utf-8')).hexdigest().upper()
         prefix = hashed[0:5]
-        suffixes = lookup(prefix)
-        if len(suffixes) > 1:
+        results = lookup(prefix)
+        if len(results) > 1:
             seen = False
-            for suffix in suffixes:
-                if hashed == (prefix + suffix.split(':')[0]):
+            for result in results:
+                suffix = result.split(':')[0]
+                frequency = result.split(':')[1]
+                if (hashed == (prefix + suffix)) and frequency != '0':
                     seen = True
                     break
             
@@ -23,7 +25,7 @@ def main():
                 print('The specified password has not been previously compromised in a KNOWN data breach and may be safe to use.')
 
 def lookup(prefix):
-    suffixes = ''
+    results = ''
     try:
         response = requests.get('https://api.pwnedpasswords.com/range/' + prefix, headers={'Add-Padding': 'true'})
         response.raise_for_status()
@@ -32,8 +34,8 @@ def lookup(prefix):
     except Exception as exception:
         print(f'Error: {exception}')
     else:
-        suffixes = response.text
-    return suffixes.split('\n')
+        results = response.text
+    return results.split('\n')
 
 def usage():
     print('USAGE: python check-pass.py password-to-check')
