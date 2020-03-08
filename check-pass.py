@@ -15,7 +15,7 @@ def main():
             for result in results:
                 suffix = result.split(':')[0]
                 frequency = result.split(':')[1]
-                if (hashed == (prefix + suffix)) and frequency != '0':
+                if (hashed == (prefix + suffix)) and (frequency != '0'):
                     seen = True
                     break
             
