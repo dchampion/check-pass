@@ -16,7 +16,7 @@ def main():
                 if hashed[5:] == suffix and frequency != '0':
                     seen = True
                     break
-            
+
             if seen:
                 print('The specified password has been previously compromised in a data breach and should never be used.')
             else:
@@ -27,7 +27,7 @@ def lookup(prefix):
     try:
         response = requests.get('https://api.pwnedpasswords.com/range/' + prefix, headers={'Add-Padding': 'true'})
         response.raise_for_status()
-    except requests.exceptions.HTTPError as http_error:
+    except HTTPError as http_error:
         print(f'HTTP error: {http_error}')
     except Exception as exception:
         print(f'Error: {exception}')
