@@ -27,7 +27,7 @@ def lookup(prefix):
     try:
         response = requests.get('https://api.pwnedpasswords.com/range/' + prefix, headers={'Add-Padding': 'true'})
         response.raise_for_status()
-    except HTTPError as http_error:
+    except requests.exceptions.HTTPError as http_error:
         print(f'HTTP error: {http_error}')
     except Exception as exception:
         print(f'Error: {exception}')
