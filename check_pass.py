@@ -18,9 +18,9 @@ def main():
                     break
 
             if seen:
-                print('The specified password has been previously compromised in a data breach and should never be used.')
+                print('The specified password has been previously leaked in a data breach and should never be used.')
             else:
-                print('The specified password has not been previously compromised in a KNOWN data breach and may be safe to use.')
+                print('The specified password has not been previously leaked in a KNOWN data breach and may be safe to use.')
 
 def lookup(prefix):
     results = ''
@@ -36,7 +36,7 @@ def lookup(prefix):
     return results.split('\n')
 
 def usage():
-    print('USAGE: python check-pass.py password-to-check')
+    print('USAGE: python check_pass.py candidate')
 
 if __name__ == '__main__':
     main()
