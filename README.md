@@ -1,24 +1,55 @@
 # Breached Password Checker
+## Summary
+Indicates whether a password has been leaked in a publicly-known data breach.
 
 ## Requirements
-To run this program, Python version 3+ must be installed on your computer.
+To run this program, Python 3+ must be installed on your computer.
+
+To check if Python is installed on your computer, and if so to verify you have version 3 or greater, open a terminal window (e.g. <code>cmd</code> in Windows, <code>bash</code> in Linux, or <code>Terminal</code> in MacOS) and type <code>python --version</code>. If the version displayed is less than 3, or you receive an error, download and install the latest Python version <a href=https://www.python.org/downloads target="_blank">here</a></i>.
+
+## Installation
+Use one of the following methods to install the leaked password checker on your computer:
+* If Git is installed, navigate to a clean directory on your file system and type <code>git clone https<nolink>://github.com/dchampion/check-pass.git</code>. This will install the program into a subdirectory called <code>check-pass</code>.
+
+* If <code>Git</code> is not installed, or you do not wish to use it, click the <code>Code</code> button on this page and select <code>Download ZIP</code> to download and extract a zipped version of the program into a clean file system directory.
+
+## Set Up a Virtual Environment
+To avoid polluting your global Python environment with the dependencies required by this program, set up and activate a virtual environment. Execute all of the following commands from a command-line prompt in the directory into which you cloned/installed the program.
+
+* Install your virtual environment:
+
+    * If using <code>Windows</code> (cmd) or <code>Linux</code> (bash), type <code>python -m venv .venv</code>
+
+    * If using <code>MacOS</code> (Terminal), type <code>python3 -m venv .venv</code>
+
+* Activate your virtual environment:
+
+    * If using <code>Windows</code> (cmd), type <code>".venv/Scripts/activate.bat"</code> (you must include the double-quotes for this command to work).
+
+    * If using <code>Linux</code> (bash) or <code>MacOS</code> (Terminal), type <code>source .venv/bin/activate</code> (note on some systems the path may be <code>.venv/Scripts/activate</code>).
+
+* Install the program dependencies into your virtual environment:
+
+    * Type <code>pip install -r requirements.txt</code>
+
+With the successful completion of these three steps, you should be ready to run the leaked password checker.
 
 ## Usage
-From an operating system shell, type <code>python check_pass.py candidate</code> where <code>candidate</code> is the password to test for previous exposure in a data breach.
+From an operating system shell, type <code>python check_pass.py candidate</code>, where <code>candidate</code> is the password to test for exposure in a data breach.
 
-## Background
-Among the measures we take to secure our valuable digital assets, passwords are perhaps the most vulnerable to theft and/or misuse by nefarious actors; what a hacker might refer to as low-hangning fruit. The reasons for this are many&mdash;passwords are often weak and/or easily guessable, they are written on sticky notes, reused across multiple accounts or exposed in massive data breaches.
+# Background
+Among the measures we take to secure our digital assets, passwords are perhaps the most vulnerable to theft and misuse by bad actors; what a hacker might refer to as low-hangning fruit. The reasons for this are many&mdash;passwords are often weak or easily guessable,  written on Post-It notes, reused across multiple accounts and/or exposed in massive data breaches.
 
-A password in the wrong hands can obviously result in great personal loss. Consider the consequences of a bad actor gaining access to your checking or savings account, or your 401(k). This thought should cause anyone to think hard about the quality of the passwords they choose to secure sensitive assets.
+A password in the wrong hands can result in great personal loss. Consider the consequences of a bad actor gaining access to your checking or savings account, or your 401(k). This thought should cause anyone to think hard about the quality of the passwords they choose to secure sensitive assets.
 
-One crucial but overlooked measure of password quality is knowing whether it has previously been leaked in a data breach. Massive data breaches perpetrated by malicious hackers are occuring with ever greater frequency (see Target, Home Depot, Equifax, LinkedIn, Sony, Yahoo, Facebook and Anthem, to name a few). If a password has been leaked it is effectively useless, because it will be among the first to be tried if a hacker attempts to break into your account. In that case you want to change it immediately, if it is currently in use, and in no case ever use it again to secure anything of value.
+One crucial but overlooked measure of password quality is knowing whether it has previously been leaked in a data breach. Massive data breaches perpetrated by malicious hackers are occuring with ever greater frequency (see Target, Home Depot, Equifax, LinkedIn, Sony, Yahoo, Facebook and Anthem, to name a few). If a password has been leaked it is effectively useless; it will be among the first to be tried if a hacker attempts to break into your account. In that case you want to change it immediately, and never use it again to secure anything of value.
 
 ## Purpose
-The program in this repository determines whether a candidate password (i.e. a password you currently use, or one you are considering using) appears in a <a href=https://haveibeenpwned.com/Passwords target="_blank">publicly available database of passwords</a> that have previously been exposed in a data breach. The objective is to vet a candidate password for its suitability to secure a sensitive resource, such as an email or bank account. Obviously, a password that has been exposed should not be used to secure a sensitive resource, now or ever.
+The program in this repository determines whether a candidate password (i.e. a password you currently use, or one you are considering using) appears in a <a href=https://haveibeenpwned.com/Passwords target="_blank">publicly available database of passwords</a> that have previously been exposed in a data breach. The objective is to vet a candidate password for its suitability to secure a sensitive resource, such as an email or bank account. A password that has been exposed should not be used to secure a sensitive resource, now or ever.
 
 Whether a password has been exposed is just one aspect of its suitability. For example, just because a password hasn't previously appeared in a data breach does not necessarily mean it is a <i>good</i> password (more on this below). This program is but one test of a password's quality, albeit a crucial one.
 
-If the program indicates a candidate password has previously appeared in a data breach, the password should be considered <i>burned</i> and never again used to secure a sensitive resource. If it is an existing password, then it should be changed immediately.
+If the program indicates a password has previously appeared in a data breach, the password should be considered <i>burned</i> and never again used to secure a sensitive resource. If it is an existing password, then it should be changed immediately.
 
 The database queried by this program contains more than 500,000,000 (that's 500 million) leaked passwords. It is (currently) the largest such database publicly available, and is actively updated every time a data breach exposes more passwords to the public domain.
 
